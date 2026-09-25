@@ -1,1 +1,0 @@
-{"resources":[{"@type":"Symfony\\Component\\Config\\Resource\\FileResource","resource":"/var/www/project/assets/js/functions/clearField/clearfield.js"},{"@type":"Symfony\\Component\\Config\\Resource\\FileExistenceResource","resource":"/var/www/project/assets/js/functions/message/message.js","exists":true}]}

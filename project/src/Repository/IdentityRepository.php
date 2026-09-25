@@ -2,8 +2,11 @@
 
 namespace App\Repository;
 
+use App\Entity\Civility;
 use App\Entity\Identity;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Exception\ORMException;
+use Doctrine\ORM\OptimisticLockException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -16,28 +19,15 @@ class IdentityRepository extends ServiceEntityRepository
         parent::__construct($registry, Identity::class);
     }
 
-    //    /**
-    //     * @return Identity[] Returns an array of Identity objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('i')
-    //            ->andWhere('i.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('i.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?Identity
-    //    {
-    //        return $this->createQueryBuilder('i')
-    //            ->andWhere('i.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    /**
+     * @throws OptimisticLockException
+     * @throws ORMException
+     */
+    public function findByGender():Identity
+    {
+        $identity = new Identity();
+        $gender = $this->getEntityManager()->find(Civility::class,Civility::FEMME);
+        $identity->setCivility($gender);
+        return $identity;
+    }
 }

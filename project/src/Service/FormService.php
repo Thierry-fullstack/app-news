@@ -44,7 +44,7 @@ class FormService
         $identity = $form->getData();
         $civility = $form->get('civility')->getData();
         $identity->setCivility($civility);
-        $identity->setClient($user);
+        $identity->setInscrit($user);
 
         /** @var UploadedFile $image */
         $image = $form->get('portrait')->getData();
@@ -56,7 +56,7 @@ class FormService
             $this->em->persist($portrait);
         }
         $identity->setPortrait($portrait);
-        $user->setPhase(2);
+        $user->setStatus(User::COMPLET);
         $user->setSession($session->getId());
         $this->em->persist($identity);
         $this->em->flush();

@@ -24,6 +24,10 @@ return [
         'path'=>'./assets/js/register.js',
         'entrypoint'=>true,
     ],
+    'civility'=>[
+        'path'=>'./assets/js/ajax-identity.js',
+        'entrypoint'=>true,
+    ],
     '@hotwired/turbo' => [
         'version' => '8.0.23',
     ],

@@ -29,7 +29,7 @@ final class MainController extends AbstractController
                 }
             }
             if($this->getUser()->getStatus()===User::CONFIRM){
-                $this->addFlash('light','Votre compte est maintenant activé, finalisé votre inscription');
+                $this->addFlash('warning','Votre compte est maintenant activé, finalisé votre inscription');
                 return $this->redirectToRoute('profile_app_identity');
             }
             if($this->getUser()->getStatus()===User::INSCRIT){

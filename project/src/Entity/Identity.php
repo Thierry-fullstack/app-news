@@ -8,6 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: IdentityRepository::class)]
 class Identity
 {
+    const string FORM_ADD_SUCCESSFULLY = 'FORM_ADD_SUCCESSFULLY';
+    const string FORM_BAD_RESPONSE = 'FORM_BAD_RESPONSE';
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -36,6 +38,9 @@ class Identity
     #[ORM\ManyToOne(inversedBy: 'identities')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Region $region = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
 
     public function getId(): ?int
     {
@@ -127,6 +132,18 @@ class Identity
     public function setRegion(?Region $region): static
     {
         $this->region = $region;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

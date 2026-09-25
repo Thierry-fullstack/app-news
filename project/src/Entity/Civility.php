@@ -10,6 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: CivilityRepository::class)]
 class Civility
 {
+    public const string FEMME = '1';
+    public const string HOMME = '2';
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]

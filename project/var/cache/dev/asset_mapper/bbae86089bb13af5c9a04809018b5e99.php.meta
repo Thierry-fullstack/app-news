@@ -1,1 +1,0 @@
-a:2:{i:0;O:46:"Symfony\Component\Config\Resource\FileResource":1:{s:8:"resource";s:59:"/var/www/project/assets/vendor/bootstrap/bootstrap.index.js";}i:1;O:55:"Symfony\Component\Config\Resource\FileExistenceResource":2:{s:8:"resource";s:59:"/var/www/project/assets/vendor/@popperjs/core/core.index.js";s:6:"exists";b:1;}}

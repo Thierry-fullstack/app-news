@@ -12,10 +12,10 @@
     <div class="container mt-5 ">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8 col-sm-12">
-                <div class="card shadow rounded-3" id="bg-login-form">
+                <div class="card" id="bg-login-form">
                     <div class="card-body">
                         <div >
-                            <h1 class="card-title text-center fst-italic text-capitalize text-info-emphasis fw-semibold">Connexion</h1>
+                            <h1 class="card-title text-center fst-italic text-capitalize text-warning fw-semibold">Connexion</h1>
                         </div>
                         <hr class="text-primary" />
                         <div class="d-grid gap-2 mb-3">
@@ -40,11 +40,11 @@
                             </div>
                             <div class="d-grid">
                                 <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
-                                <button type="submit" class="btn btn-outline-success fw-bolder text-capitalize" id="submitConnect">Soumettre</button>
+                                <button type="submit" class="btn btn-outline-warning text-primary-emphasis fw-bolder text-capitalize" id="submitConnect">Soumettre</button>
                             </div>
                         </form>
                         <div class="text-center mt-3">
-                            <a href="{# path('app_forgot_password_request') #}" class="text-warning fw-semibold fst-italic text-decoration-none "
+                            <a href="{# path('app_forgot_password_request') #}" class="text-primary-emphasis fst-italic text-decoration-none "
                                data-bs-toggle="tooltip" data-bs-placement="top" title="Mot de passe oublié">Mot de passe oublié ?</a>
                         </div>
                     </div>
