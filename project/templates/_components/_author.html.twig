@@ -1,0 +1,11 @@
+<!-- original: https://github.com/Componentity/componentity/tree/master/Bootstrap/author%20box/authorbox-bootstrap1st -->
+<div class="container mb-5 ">
+    <div class="col-md-9 border px-5 py-4 mx-auto d-sm-flex align-items-center">
+        <img class="img-fluid rounded-circle mr-4" style="width: 120px; border: 4px solid #A01D48;"
+             src="{{ asset('assets/uploads/portraits/' ~ post.user.portrait.name)  }}" alt="">
+        <div class="my-1 mx-3">
+            <h4><span class="color-wine text-capitalize">{{ post.user.pseudo }}</span></h4>
+            <p class="text-dark text-small"> {{ post.user.skill }}</p>
+        </div>
+    </div>
+</div>

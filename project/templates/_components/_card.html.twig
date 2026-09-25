@@ -1,0 +1,20 @@
+
+    {% if post is defined %}
+    <div class="card mb-4">
+        <a href="{{ path('app_main_show_post',{slug:post.slug}) }}">
+                {% for photo in post.photos  %}
+                    {% if not loop.first %}
+                    <img class="card-img-top" src="{{ asset('assets/uploads/Articles/') ~ photo.name }}" alt="{{ post.slug }}" />
+                    {%  endif %}
+                {% endfor %}
+                </a>
+                <div class="card-body">
+                    <h3 class="card-title h5 fst-italic text-dark text-capitalize">{{ post.title }}</h3>
+                    <p class="card-text h6">{{ post.content  | u.truncate(80,'...') |striptags|raw }}</p>
+                    <div class=" small text-primary">Posté le{{ post.createdAt | date('d-m-Y-H-i') }}
+                        <a class="btn btn-sm btn-outline-warning text-dark ms-5" href="{{ path('app_main_show_post',{slug:post.slug}) }}">Lire plus→</a>
+                    </div>
+                </div>
+    </div>
+    {% endif %}
+

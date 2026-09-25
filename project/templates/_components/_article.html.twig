@@ -1,0 +1,50 @@
+<article>
+    <!-- Post header-->
+    <header class="mb-2">
+        <!-- Post title-->
+        <h1 class="mb-1 fst-italic text-info-emphasis text-capitalize">{{ post.title }}</h1>
+        <!-- Post meta content-->
+        <div class="text-muted fst-italic text-warning-emphasis mb-2">Posté le {{ post.createdAt | date('d/m/Y') }}</div>
+        <!-- Post categories-->
+        <div class="mb-2 color-wine" >Catégories :
+        {% for categorie in post.category %}
+            {% if loop.index is divisible by(2) %}
+                <span class="badge bg-light">
+            <a class="text-decoration-none color-wine " href="{{ path('app_main_show_posts_category',{id:categorie.id}) }}">{{ categorie.name }}</a>
+        </span>
+            {% else %}
+                <span class="badge bg-light">
+            <a class="text-decoration-none text-dark " href="{{ path('app_main_show_posts_category',{id:categorie.id}) }}">{{ categorie.name }}</a>
+        </span>
+            {% endif %}
+        {% endfor %}
+        </div>
+    </header>
+    <!-- Preview image figure-->
+    {%  for photo in post.photos %}
+        {% if loop.first %}
+    <figure id="figure-article" class="mb-4"><img class="img-fluid img-thumbnail rounded" src="{{ asset('assets/uploads/Articles/') ~ photo.name }}" alt="{{ post.slug }}" /></figure>
+    {% endif %}
+        <!-- Post content-->
+    <section class="mb-5 text-dark">
+            {{ post.content | raw }}
+    </section>
+    <!-- Preview image figure-->
+        {% if loop.last %}
+    <figure id="figure-article" class="mb-4"><img class="img-fluid img-thumbnail rounded" src="{{ asset('assets/uploads/Articles/') ~ photo.name}}" alt="{{ post.slug }}" /></figure>
+    {% endif %}
+    {% endfor %}
+    <div class="mb-2 color-wine text-center" >Mots-clés :
+        {% for keyword in post.keyword %}
+            {% if loop.index is divisible by(2) %}
+                <span class="badge rounded-pill bg-dark-subtle">
+            <a class="text-decoration-none color-wine " href="{{ path('app_main_show_posts_keyword',{id:keyword.id}) }}">{{ keyword.name }}</a>
+        </span>
+            {% else %}
+                <span class="badge rounded-pill bg-dark-subtle">
+            <a class="text-decoration-none text-dark " href="{{ path('app_main_show_posts_keyword',{id:keyword.id}) }}">{{ keyword.name }}</a>
+        </span>
+            {% endif %}
+        {% endfor %}
+    </div>
+</article>

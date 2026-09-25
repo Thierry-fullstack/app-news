@@ -1,0 +1,77 @@
+
+services:
+
+  www:
+    build: docker
+    container_name: www
+    ports:
+      - "8000:80"
+    volumes:
+      - ./docker/vhosts:/etc/apache2/sites-enabled
+      - ./:/var/www
+    networks:
+      - mon-blog
+
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb-blog
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: news
+      MYSQL_USER: symfony
+      MYSQL_PASSWORD: symfony
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - mon-blog
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin-blog
+    environment:
+      PMA_HOST: mariadb
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "8081:80"
+    networks:
+      - mon-blog
+
+  rabbitmq:
+    image: rabbitmq:3.7-management
+    container_name: rabbitmq-blog
+    environment:
+      RABBITMQ_USER: 'guest'
+      RABBITMQ_PASS: 'guest'
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - mon-blog
+
+  redis:
+    image: redis:5-alpine
+    container_name: redis-blog
+    ports: [ "6379:6379" ]
+    networks:
+      - mon-blog
+
+  mailer:
+    image: axllent/mailpit
+    container_name: mailpit-blog
+    ports:
+      - "1025"
+      - "8025"
+    environment:
+      MP_SMTP_AUTH_ACCEPT_ANY: 1
+      MP_SMTP_AUTH_ALLOW_INSECURE: 1
+    networks:
+      - mon-blog
+
+
+networks:
+  mon-blog:
+volumes:
+  db_data:

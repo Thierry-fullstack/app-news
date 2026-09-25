@@ -1,0 +1,13 @@
+<div class="card mb-2">
+    {% for photo in post.photos %}
+        {% if loop.first %}
+    <a href="#!"><img class="card-img-top" src="{{ asset('assets/uploads/Articles/') ~ photo.name }}" alt="{{ post.slug }}" /></a>
+        {% endif %}
+    {% endfor %}
+    <div class="card-body">
+        <h6 class="small h6 text-muted text-small small text-info-emphasis">{{ post.createdAt | date('d-m-Y') }}</h6>
+        <h6 class="card-title text-small fst-italic text-info-emphasis text-capitalize">{{ post.title }}</h6>
+        <p class="card-text small h6">{{ post.content  | u.truncate(30,'...') |striptags|raw }}</p>
+        <a class="btn btn-sm btn-outline-warning" href="{{ path('profile_posts_edit',{slug:post.slug}) }}">Modifier</a>
+    </div>
+</div>

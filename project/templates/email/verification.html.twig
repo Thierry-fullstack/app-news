@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Action de sécurité</title>
+    <style>
+        body{
+            background-color:#fdfdfd;
+        }
+
+        div{
+            margin-bottom: 10px;
+        }
+        h3{
+            color: rgb(251,191,36);
+        }
+        h2{
+            color: rgb(8,145,178);
+        }
+        h4{
+            color: #E04B59;
+        }
+        p{
+            color:#5B62F5;
+        }
+    </style>
+</head>
+
+<body>
+<!-- Main Container -->
+<div>
+    <!-- Header -->
+    <div>
+        <h2>Blog de Thierry</h2>
+    </div>
+    <!-- Content -->
+    <div>
+        <h3>Bienvenue {{ user.email }}</h3>
+
+        <!-- CTA Button  -->
+        <div>
+            <p>
+                Afin d'accéder à notre site, veuillez reporter ce code sur le formulaire mis à votre disposition.
+            </p>
+            <h4>{{ number }}</h4>
+
+            <p>Ce lien expire dans un 1/4 heure</p>
+            <p>Merci à vous.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div>
+
+    </div>
+</div>
+</body>
+</html>
+

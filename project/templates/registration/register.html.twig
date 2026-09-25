@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Incription{% endblock %}
+
+{% block importmap %}
+    {{ importmap(['app', 'register']) }}
+{% endblock %}
+
+{% block body %}
+    <div class="container-sm py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="contact-wrapper">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mt-5 contact-info h-100" >
+                                <h6 class="mx-2 mb-3 text-center text-primary-emphasis">Besoin d'aide ? </h6>
+                                <p class="my-1 mt-2 small text-center text-warning fw-bolder small" id="dialogRegister">&nbsp;</p>
+                                <ul class="mx-2 list-group text-warning-emphasis h-50" id="list-group-register">
+                                    <li class="contact-item list-group-item">
+                                        <p class="mb-0" id="email-info">Email</p>
+                                    </li>
+                                    <li class="contact-item list-group-item mb-0">
+                                        <p class="mb-0" id="password-info">Mot de passe</p>
+                                    </li>
+                                    <div class="contact-item list-group-item mb-0 h-auto"  id="password-info">
+                                        <ul id='password_criteria' class="text-primary-emphasis mx-2 mb-0 ">
+                                            <li id="password_length_criteria" data-password-criteria class="password-criteria-true">10 caractères au total</li>
+                                            <li id="password_special_character_criteria" data-password-criteria>Caractère spécial</li>
+                                            <li id="password_uppercase_criteria" data-password-criteria>Majuscule</li>
+                                            <li id="password_number_criteria" data-password-criteria>Chiffre</li>
+                                            <li id="password_lowercase_criteria" data-password-criteria>Minuscule</li>
+                                        </ul>
+                                    </div>
+                                    <li class="contact-item list-group-item">
+                                        <p class="mt-0" id="agree-info">Contrat </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8" >
+                            <div class="contact-form">
+                                <div class="mt-3">
+                                    <h1 class="card-title fst-italic text-capitalize text-center text-warning fw-semibold">Inscription</h1>
+                                </div>
+                                {{ form_start(registrationForm,{attr:{id:'registration_form',class:'mt-5'}}) }}
+                                <div class="form-floating mb-3">
+                                    {{ form_widget(registrationForm.email) }}
+                                    {{ form_label(registrationForm.email)}}
+                                    <div class="text-danger small">
+                                        {{ form_errors(registrationForm.email)}}
+                                    </div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    {{ form_widget(registrationForm.plainPassword) }}
+                                    {{ form_label(registrationForm.plainPassword)}}
+                                    <div class="text-danger small">
+                                        {{ form_errors(registrationForm.plainPassword)}}
+                                    </div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    {{ form_widget (registrationForm.agreeTerms) }}
+                                    {{ form_label(registrationForm.agreeTerms)}}
+                                    <div class="text-danger small">
+                                        {{ form_errors(registrationForm.agreeTerms)}}
+                                        <small id="errorAgreeTerms"></small>
+                                    </div>
+                                </div>
+                                <div class="d-grid">
+                                    {{ form_row(registrationForm.register,{ attr:{ class:'btn btn-outline-warning text-dark text-capitalize w-100 ' } }) }}
+                                </div>
+                                {{ form_end(registrationForm) }}
+                                <div class="text-center mt-3">
+                                    <a href="{{ path('app_login') }}" class=" text-primary-emphasis text-center fst-italic text-decoration-none "
+                                       data-bs-toggle="tooltip" data-bs-placement="top" title="Déjà inscrit ?">Déjà inscrit ?</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

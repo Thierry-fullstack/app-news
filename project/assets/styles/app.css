@@ -1,0 +1,78 @@
+html,body {
+    margin: auto;
+    height: 100%;
+    width: auto;
+    /*  background-color: #FAFAFA; */
+}
+
+#password-info{
+    height: 16px;
+}
+
+#password_criteria{
+    display: none;
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+#confirm_criteria{
+    display: none;
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+#password_criteria li {
+    font-size: 13px;
+}
+#confirm_criteria li {
+    font-size: 13px;
+}
+
+#password_criteria {
+    text-shadow: 0 0 0 lightgreen;
+    content: '\02714';
+}
+#confirm_criteria {
+    text-shadow: 0 0 0 lightgreen;
+    content: '\02714';
+}
+
+#password_criteria li[class="password-criteria-true"]::before,
+#password_criteria li[class="password-criteria-false"]::before
+{
+    margin-right: 0.5rem;
+    color: transparent;
+}
+
+#confirm_criteria li[class="password-criteria-true"]::before,
+#confirm_criteria li[class="password-criteria-false"]::before
+{
+    margin-right: 0.5rem;
+    color: transparent;
+}
+
+#password_criteria li[class="password-criteria-true"]::before
+{
+    text-shadow: 0 0 0 lightgreen;
+    content: '\02714';
+}
+#confirm_criteria li[class="password-criteria-true"]::before
+{
+    text-shadow: 0 0 0 lightgreen;
+    content: '\02714';
+}
+
+#password_criteria li[class="password-criteria-false"]::before
+{
+    text-shadow: 0 0 0 red;
+    content: '\02716';
+}
+#confirm_criteria li[class="password-criteria-false"]::before
+{
+    text-shadow: 0 0 0 red;
+    content: '\02716';
+}
+
+#label-check-agreeTerms{
+    font-size: 13px;
+}

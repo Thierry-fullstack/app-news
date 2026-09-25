@@ -1,0 +1,34 @@
+<div class="card w-auto">
+    {% if app.user %}
+    <a href="#add-comment"  class="my-2 text-center fw-bolder fw-light color-wine text-decoration-none">Ajouter un commentaire</a>
+    {% else %}
+    <a href="{{ path('app_login') }}"  class="my-2 text-center fw-bolder fw-light color-wine text-decoration-none">Connectez-vous pour ajouter un commentaire</a>
+    {% endif %}
+    <div class="card-body">
+        <!-- Comment form-->
+        <!-- Comment with nested comments-->
+        {% for comment in post.comments %}
+            {% if comment.parent == null %}
+                <div class="d-flex mb-4">
+                    <!-- Parent comment-->
+                    <div class="flex-shrink-0"><img class="rounded-circle img-comment" src="{{ asset('assets/uploads/portraits/mini/480x480-') ~ comment.user.portrait.name }}" alt="{{ comment.user.portrait.alt }}" /></div>
+                    <div class="ms-3">
+                        <div class="fw-bold"><small><span class="text-info">{{ comment.user.pseudo }}</span> le: {{ comment.createdAt | date('d/m/Y H:i') }}</small></div>
+                        <div><small>{{ comment.content | raw }}</small></div>
+                        <small><a href="#add-comment" data-reply data-id="{{ comment.id }}" class="response-comment fw-light text-decoration-none color-wine">Répondre</a> </small>
+                        {% for reply in comment.replies %}
+                            <!-- Child comment 1-->
+                            <div class="d-flex mt-4">
+                                <div class="flex-shrink-0"><img class="rounded-circle img-fluid img-comment" src="{{ asset('assets/uploads/portraits/mini/480x480-') ~ reply.user.portrait.name }}" alt="{{ reply.user.portrait.alt }}" /></div>
+                                <div class="ms-3">
+                                    <div class="fw-bold"><small><span class="text-info">{{ reply.user.pseudo }}</span> le:{{ reply.createdAt | date('d/m/Y H:i') }}</small></div>
+                                    <div><small>{{ reply.content | raw }}</small></div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

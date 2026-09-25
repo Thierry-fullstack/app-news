@@ -1,0 +1,1 @@
+a:2:{i:0;O:46:"Symfony\Component\Config\Resource\FileResource":1:{s:8:"resource";s:82:"/var/www/html/vendor/symfony/ux-turbo/assets/dist/mercure_stream_source_element.js";}i:1;O:55:"Symfony\Component\Config\Resource\FileExistenceResource":2:{s:8:"resource";s:58:"/var/www/html/assets/vendor/@hotwired/turbo/turbo.index.js";s:6:"exists";b:1;}}

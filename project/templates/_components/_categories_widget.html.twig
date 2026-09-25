@@ -1,0 +1,31 @@
+<div class="card mb-4">
+    <div class="card-header fst-italic color-wine">Catégories</div>
+    <div class="card-body">
+        <div class="row">
+
+            {% for categorie in categories %}
+            <div class="col-6">
+                <ul class="list-unstyled mb-0">
+                {% if loop.index is divisible by(2) %}
+                    <li>
+                        <span class="badge bg-light mb-2">
+                            <a href="{{ path('app_main_show_posts_category',{id:categorie.id}) }}"
+                           class="text-decoration-none text-dark ">{{ categorie.name | capitalize }}
+                            </a>
+                        </span>
+                    </li>
+                {% else %}
+                    <span class="badge bg-light mb-2">
+                            <a href="{{ path('app_main_show_posts_category',{id:categorie.id}) }}"
+                               class="text-decoration-none color-wine ">{{ categorie.name | capitalize }}
+                            </a>
+                        </span>
+                {% endif %}
+                </ul>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+

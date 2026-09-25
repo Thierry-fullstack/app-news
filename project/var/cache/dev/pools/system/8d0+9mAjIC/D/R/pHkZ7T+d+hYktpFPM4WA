@@ -1,0 +1,3 @@
+<?php //b438d87b83606254c9c6bbcf416c52e0
+
+return [PHP_INT_MAX, 'vendor/bootstrap/dist/css/bootstrap.min.css'];

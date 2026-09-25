@@ -1,0 +1,1 @@
+{"resources":[{"@type":"Symfony\\Component\\Config\\Resource\\FileResource","resource":"/var/www/project/vendor/symfony/stimulus-bundle/assets/dist/loader.js"},{"@type":"Symfony\\Component\\Config\\Resource\\FileExistenceResource","resource":"/var/www/project/vendor/symfony/stimulus-bundle/assets/dist/controllers.js","exists":true}]}

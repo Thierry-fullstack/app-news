@@ -1,0 +1,1 @@
+a:2:{i:0;O:46:"Symfony\Component\Config\Resource\FileResource":1:{s:8:"resource";s:61:"/var/www/project/assets/js/functions/clearField/clearfield.js";}i:1;O:55:"Symfony\Component\Config\Resource\FileExistenceResource":2:{s:8:"resource";s:55:"/var/www/project/assets/js/functions/message/message.js";s:6:"exists";b:1;}}

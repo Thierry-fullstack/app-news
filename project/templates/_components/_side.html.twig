@@ -1,0 +1,191 @@
+
+{% block side %}
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        {% if app.user.roles is defined %}
+        <div class="sidebar-header p-3 text-bg-warning">
+            <div class="d-flex align-items-center justify-content-between">
+                <h5 class="mb-0 ">Tableau de bord</h5>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-sm btn-light">
+                        <i class="bi bi-gear"></i>
+                    </button>
+                    <button class="btn btn-sm btn-light">
+                        <i class="bi bi-bell"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- User Profile -->
+        <div class="p-3 border-bottom">
+            <div class="d-flex align-items-center">
+                {% if app.user.portrait.name is defined %}
+                <img id="side_user_portrait" src="{{ asset('assets/uploads/portraits/') ~ app.user.portrait.name }}" class="rounded-circle me-2" alt="User">
+                {% endif %}
+                <div>
+                    {% if app.user.pseudo is defined  %}
+                    <h6 class="mb-0 text-primary-emphasis">{{ app.user.pseudo }}</h6>
+                    {% endif %}
+                    <small class="text-muted">
+                        <span class="user-status"></span>
+                        Online
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="nav flex-column mb-2">
+            <a href="{{ path('app_main') }}" class="nav-link ">
+                <div class="color-wine fw-bolder">
+                <i class="bi bi-house me-2"></i>
+                Revenir à l'accueil
+                </div>
+            </a>
+        </nav>
+        <!-- Inscrit -->
+        <div class="accordion " id="accordion">
+            {% if app.user.roles.0 == 'ROLE_ADMIN' %}
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed fw-bolder" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseInscrit" aria-expanded="false" aria-controls="flush-collapseOne">
+                        <div class="text-primary-emphasis">
+                            <i class="bi bi-person me-2">&nbsp;</i>
+                            Inscrits
+                        </div>
+                    </button>
+                </h2>
+                <div id="flush-collapseInscrit" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body bg-light">
+                        <!-- Navigation -->
+                        <nav class="nav flex-column mt-2 ">
+                            <a href="{{ path('app_list_profil') }}" class="nav-link d-flex justify-content-between align-items-center">
+                                <div>
+                                    <i class="bi bi-person me-2"></i>
+                                    Liste des inscrits
+                                </div>
+                                {% if users is defined %}
+                                <span class="badge rounded-pill bg-info">{{ users }}</span>
+                                {% endif %}
+                            </a>
+
+                        </nav>
+                        </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+<!--article-->
+        {% if app.user.roles.0 === 'ROLE_AUTHOR' or app.user.roles.0 === 'ROLE_ADMIN' %}
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed fw-bolder" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        <div class="text-primary-emphasis">
+                            <i class="bi bi-newspaper">&nbsp;</i>
+                            Articles
+                        </div>
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body bg-light">
+                        <!-- Navigation -->
+                        <nav class="nav flex-column mt-2">
+                            <a href="{{ path('profile_posts_list') }}" class="nav-link d-flex justify-content-between align-items-center">
+                                <div>
+                                    <i class="bi bi-newspaper"></i>
+                                    Liste des articles
+                                </div>
+
+                                <span class="badge rounded-pill bg-dark">
+                                {% if posts is defined and posts is not null or app.user.posts is defined %}{{ posts  }}{% endif %}
+                                </span>
+
+                            </a>
+                            <a href="{{ path('profile_posts_create') }}" class="nav-link d-flex justify-content-between align-items-center">
+                                <div>
+                                    <i class="bi bi-info-lg"></i>
+                                    Création article
+                                </div>
+                                <span class="badge rounded-pill bg-warning">?</span>
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+      <!-- category -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed fw-bolder" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        <div class="text-primary-emphasis">
+                            <i class="bi bi-list"></i>
+                            Catégories
+                        </div>
+                    </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body bg-light">
+                        <!-- Navigation -->
+                        <nav class="nav flex-column mt-2">
+                            <a href="{{ path('category_list') }}" class="nav-link d-flex justify-content-between align-items-center">
+                                <div>
+                                    <i class="bi bi-list-check"></i>
+                                    Liste des catégories
+                                </div>
+                                {% if categories is defined %}
+                                <span class="badge rounded-pill bg-dark">{{ categories }}</span>
+                                    {% endif %}
+                            </a>
+
+                            {% if app.user.roles.0 == 'ROLE_ADMIN' %}
+                            <a href="{{ path('category_create') }}" class="nav-link d-flex justify-content-between align-items-center">
+                                <div>
+                                    <i class="bi bi-list-ul"></i>
+                                    Création catégorie
+                                </div>
+                                <span class="badge rounded-pill bg-warning">?</span>
+                            </a>
+                            {% endif %}
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <!-- Tag --->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed fw-bolder" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        <div class="text-primary-emphasis">
+                            <i class="bi bi-tag"></i>
+                            Tags
+                        </div>
+                    </button>
+                </h2>
+                <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body bg-light">
+                        <!-- Navigation -->
+                        <nav class="nav flex-column mt-2">
+                            <a href="{{ path('keyword_list') }}" class="nav-link d-flex justify-content-between align-items-center">
+                                <div>
+                                    <i class="bi bi-tags"></i>
+                                    Liste des mot-clés
+                                </div>
+                                {% if keywords is defined %}
+                                <span class="badge rounded-pill bg-dark">{{ keywords }}</span>
+                                    {% endif %}
+                            </a>
+                            <a href="{{ path('keyword_create') }}" class="nav-link d-flex justify-content-between align-items-center">
+                                <div>
+                                    <i class="bi bi-tag-fill"></i>
+                                    Création mot-clé
+                                </div>
+                                <span class="badge rounded-pill bg-warning">?</span>
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock side %}

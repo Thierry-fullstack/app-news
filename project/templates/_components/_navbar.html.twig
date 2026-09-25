@@ -1,0 +1,56 @@
+<!-- Responsive navbar-->
+<nav class="navbar navbar-expand-lg mb-1" data-bs-theme="light" id="nav-bar">
+    <div class="container">
+        <a class="navbar-brand text-primary-emphasis" href="{{ path('app_main') }}">Blog</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                {% if app.user %}
+                {% if app.user and is_granted('ROLE_ADMIN') %}
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-small">
+                    <li class="nav-item"><a class="nav-link text-primary-emphasis" href="{{ path('app_main') }}">Accueil</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-primary-emphasis" href="#" id="dropdown09" data-bs-toggle="dropdown" aria-expanded="false">{{ app.user.email }}</a>
+                        <ul class="dropdown-menu text-small" aria-labelledby="dropdown09">
+                            <li class="nav-item"><a class="nav-link text-primary-emphasis" href="#"><i class="fa-solid fa-industry"></i> Gestion</a></li>
+                            <li class="nav-item"><a class="nav-link text-primary-emphasis" href="#"><i class="fa-regular fa-circle-user"></i> Votre profile</a></li>
+                            <li class="nav-item"><a class="nav-link text-primary-emphasis" href="{{ path('app_logout') }}"><i class="bi bi-door-open"></i></i>Se déconnecter</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                {% elseif app.user and is_granted('ROLE_AUTHOR') %}
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small">
+                        <li class="nav-item"><a class="nav-link text-primary-emphasis" href="{{ path('app_main') }}">Accueil</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-primary-emphasis" href="#" id="dropdown09" data-bs-toggle="dropdown" aria-expanded="false">{{ app.user.email }}</a>
+                            <ul class="dropdown-menu small" aria-labelledby="dropdown09">
+                                <li class="nav-item"><a class="nav-link text-primary-emphasis" href="#"><i class="fa-solid fa-industry"></i> Gestion</a></li>
+                                <li class="nav-item"><a class="nav-link text-primary-emphasis" href="#"><i class="fa-regular fa-circle-user"></i> Profile</a></li>
+                                <li class="nav-item"><a class="nav-link text-primary-emphasis" href="{{ path('app_logout') }}"><i class="bi bi-door-open"></i>Se déconnecter</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                {% elseif app.user and is_granted('ROLE_USER') %}
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small">
+                        <li class="nav-item"><a class="nav-link text-primary-emphasis" href="{{ path('app_main') }}">Accueil</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-primary-emphasis" href="#" id="dropdown09" data-bs-toggle="dropdown" aria-expanded="false">{{ app.user.email }}</a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown09">
+                                <li class="nav-item"><a class="nav-link text-primary-emphasis" href="#"><i class="fa-regular fa-circle-user"></i>Profile</a></li>
+                                <li class="nav-item"><a class="nav-link text-primary-emphasis" href="{{ path('app_logout') }}"><i class="bi bi-door-open"></i></i>Se déconnecter</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                {% endif %}
+                {% else %}
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small">
+                        <li class="nav-item"><a class="nav-link text-primary-emphasis" href="{{ path('app_main') }}">Accueil</a></li>
+                        <li class="nav-item"><a class="nav-link text-primary-emphasis" href="#!">A propos</a></li>
+                        <li class="nav-item"><a class="nav-link text-primary-emphasis" href="#!">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link text-primary-emphasis" aria-current="page" href="{{ path('app_register') }}">S'inscrire</a></li>
+                        <li class="nav-item"><a class="nav-link text-primary-emphasis" aria-current="page" href="{{ path('app_login') }}">Se connecter</a></li>
+                    </ul>
+                {% endif %}
+        </div>
+
+    </div>
+</nav>

@@ -1,0 +1,1 @@
+{"resources":[{"@type":"Symfony\\Component\\Config\\Resource\\FileResource","resource":"/var/www/project/vendor/symfony/ux-turbo/assets/dist/turbo_controller.js"},{"@type":"Symfony\\Component\\Config\\Resource\\FileExistenceResource","resource":"/var/www/project/assets/vendor/@hotwired/turbo/turbo.index.js","exists":true}]}
