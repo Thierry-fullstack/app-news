@@ -19,7 +19,7 @@ class JwtService
      * @param integer $validity
      * @return string
      */
-    public function generate(array $header, array $payload, string $secret, int $validity = 3600): string
+    public function generate(array $header, array $payload, string $secret, int $validity = 900): string
     {
         // creation ecart date debut, date fin
         if ($validity > 0) {

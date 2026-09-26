@@ -6,7 +6,6 @@ use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
 use App\Security\UserAuthenticator;
-use App\Service\IntraController;
 use App\Service\JwtService;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityNotFoundException;
@@ -14,20 +13,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Messenger\Exception\ExceptionInterface;
-use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class RegistrationController extends AbstractController
 {
-    /**
-     * @throws ExceptionInterface
-     */
+
     #[Route('/register', name: 'app_register',methods: ['GET','POST'])]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager,
-    ValidatorInterface $validator,IntraController $intraController,JwtService $jwtService,MessageBusInterface $messageBus,Security $security
+    ValidatorInterface $validator,Security $security
     ): Response
     {
         $user = new User();
@@ -49,7 +44,6 @@ class RegistrationController extends AbstractController
             $plainPassword = $form->get('plainPassword')->getData();
             // encode the plain password
             $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword))->setRoles(['ROLE_USER']);
-
             try {
                 $entityManager->persist($user);
                 $entityManager->flush();
@@ -59,7 +53,6 @@ class RegistrationController extends AbstractController
             return $security->login($user, UserAuthenticator::class, 'main');
         }
     }
-
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView()
         ]);
@@ -78,7 +71,6 @@ class RegistrationController extends AbstractController
         // if token valid, expired & !modified
         if($jwtService->isValid($token) && !$jwtService->isExpired($token) && $jwtService->check($token, $this->getParameter('app.jwtsecret'))){
             $payload = $jwtService->getPayload($token);
-            //user token
             try{
                 $user = $userRepository->find($payload['user_id']);
                 $user->setStatus(User::CONFIRM);

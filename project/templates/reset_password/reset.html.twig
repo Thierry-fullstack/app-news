@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau mot de passe{% endblock %}
+{% block importmap %}
+    {{ importmap(['app', 'new-password']) }}
+{% endblock %}
+{% block body %}
+    <div class="container-sm py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="contact-wrapper shadow rounded-1">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <div class="contact-info h-100" >
+                                <h6 class="mb-3 text-warning">Indications :</h6>
+                                <p class="my-3 text-warning-emphasis text-sm-center fs-6" id="dialogNewMdp"></p>
+                                <ul class="text-info-emphasis mt-5">
+                                    <li class="contact-item">
+                                        <p class="fw-light text-info-emphasis" id="password-info">Mot de passe</p>
+                                    </li>
+                                    <div class="contact-item mb-5" id="password-information">
+                                        <ul id='password_criteria' class="text-warning">
+                                            <li id="password_length_criteria" data-password-criteria class="password-criteria-true">10 caractères au total</li>
+                                            <li id="password_special_character_criteria" data-password-criteria>Caractère spécial</li>
+                                            <li id="password_uppercase_criteria" data-password-criteria>Majuscule</li>
+                                            <li id="password_number_criteria" data-password-criteria>Chiffre</li>
+                                            <li id="password_lowercase_criteria" data-password-criteria>Minuscule</li>
+                                        </ul>
+                                    </div>
+                                    <li class="contact-item">
+                                        <p class="fw-light text-info-emphasis" id="confirmation-info">Confirmation</p>
+                                    </li>
+                                    <div class="contact-item mb-5" id="confirm-information">
+                                        <ul id='confirm_criteria' class="text-warning">
+                                            <li id="confirm_length_criteria" data-password-criteria-2 class="password-criteria-true">10 caractères au total</li>
+                                            <li id="confirm_special_character_criteria" data-password-criteria-2>Caractère spécial</li>
+                                            <li id="confirm_uppercase_criteria" data-password-criteria-2>Majuscule</li>
+                                            <li id="confirm_number_criteria" data-password-criteria-2>Chiffre</li>
+                                            <li id="confirm_lowercase_criteria" data-password-criteria-2>Minuscule</li>
+                                        </ul>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="contact-form">
+                                <div class="bg-white text-center rounded-3 ">
+                                    <h1 class="text-sm-center shadow-sm fst-italic text-capitalize text-primary-emphasis"><small>Nouveau mot de passe</small></h1>
+                                </div>
+                                <hr class="text-primary mb-4" />
+                                <div class="d-grid gap-2">
+                                    <ul class="list-group">
+                                        <li id="dialog-new-password" class="list-group-item text-warning rounded-3"></li>
+                                    </ul>
+                                </div>
+                                {{ form_start(resetForm,{attr:{id:'resetPasswordForm',novalidate:'novalidate'}}) }}
+                                <div class="form-floating mb-3">
+                                    {{ form_widget(resetForm.plainPassword) }}
+                                    <div class="text-danger small">
+                                        {{ form_errors(resetForm.plainPassword)}}
+                                    </div>
+                                </div>
+                                <div class="d-grid">
+                                    {{ form_row(resetForm.submit) }}
+                                </div>
+
+                                {{ form_end(resetForm) }}
+                                <div class="text-center mt-2">
+                                    <a href="{{ path('app_main') }}" class=" text-warning  fst-italic text-decoration-none "
+                                       data-bs-toggle="tooltip" data-bs-placement="top" title="retour à l'accueil">Accueil</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -28,6 +28,14 @@ return [
         'path'=>'./assets/js/ajax-identity.js',
         'entrypoint'=>true,
     ],
+    'request'=>[
+        'path'=>'./assets/js/request.js',
+        'entrypoint'=>true,
+    ],
+    'new-password' => [
+        'path' => './assets/js/reset.js',
+        'entrypoint' => true,
+    ],
     '@hotwired/turbo' => [
         'version' => '8.0.23',
     ],

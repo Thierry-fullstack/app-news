@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réinitialisation {% endblock %}
+{% block importmap %}
+    {{ importmap(['app', 'request']) }}
+{% endblock %}
+{% block body %}
+    {% for flash_error in app.flashes('reset_password_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 py-5">
+                <div class="card reset-card" id="reset-password-card">
+                    <div class="card-body p-4">
+                        <!-- Step  Email Verification -->
+                        <div class="bg-white" >
+                            <h1 class="card-title text-sm-center fst-italic text-capitalize text-warning">Email Verification</h1>
+                        </div>
+                        <hr class="text-primary" />
+                        <div class="d-grid gap-2 mb-3">
+                            <ul class="list-group">
+                                <li id="dialog-reset-password" class="list-group-item text-warning fw-bolder"></li>
+                            </ul>
+                        </div>
+                        <div class="step-content" id="step-verification">
+                            {{ form_start(requestForm,{ attr : { id:'resetPasswordForm',novalidate: 'novalidate'}}) }}
+                            <div class="form-floating mb-3">
+                                {{ form_widget(requestForm.email) }}
+                                {{ form_label(requestForm.email)}}
+                                <div class="text-danger small">
+                                    {{ form_errors(requestForm.email)}}
+                                </div>
+                            </div>
+                            <div class="text-primary-emphasis fst-italic text-center mb-5">
+                                <small>
+                                    Nous vous enverrons un lien, après avoir pris connaissance de votre adresse mail enregistré.
+                                </small>
+                            </div>
+                            <div class="d-grid">
+                                {{ form_widget(requestForm.submit) }}
+                                {{ form_label(requestForm.submit) }}
+                            </div>
+                            {{ form_end(requestForm) }}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -106,7 +106,8 @@ final class IdentityController extends AbstractController
                     $em->flush();
                     return $this->redirectToRoute('app_main');
                 }elseif ($number !== $user->getResetNumber() || $timer > $timeValid){
-                    return $this->redirectToRoute('app_main');
+                    $this->addFlash('warning','Vous êtes déconnecté.');
+                    return $this->redirectToRoute('app_logout');
                 }
             }
         }
