@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Twig\Environment;
 
-class FormService
+class FormServiceInscription
 {
 
     private const string PHOTO_PATH = 'Portraits';
@@ -52,17 +52,16 @@ class FormService
             $fichier = $this->photoService->add($image,uniqid(more_entropy: true),self::PHOTO_PATH,400,400);
             $portrait = new Portrait();
             $portrait->setName($fichier)->setAlt($identity->getPseudo())->setIdentity($identity);
-
             $this->em->persist($portrait);
+            $identity->setPortrait($portrait);
         }
-        $identity->setPortrait($portrait);
         $user->setStatus(User::COMPLET);
         $user->setSession($session->getId());
         $this->em->persist($identity);
         $this->em->flush();
         return new JsonResponse([
             'code'=>Identity::FORM_ADD_SUCCESSFULLY,
-            'html'=>$this->twig->render('_components/_Indentity_done.html.twig',['identity'=>$identity->getPseudo() ])
+           // 'html'=>$this->twig->render('_components/_Indentity_done.html.twig',['identity'=>$identity->getPseudo() ])
         ]);
     }
 

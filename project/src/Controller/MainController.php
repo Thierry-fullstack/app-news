@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-
 use App\Entity\User;
 use App\Service\IntraController;
 use App\Service\JwtService;
@@ -33,13 +32,11 @@ final class MainController extends AbstractController
                 return $this->redirectToRoute('profile_app_identity');
             }
             if($this->getUser()->getStatus()===User::INSCRIT){
-                $this->addFlash('warning','Veuillez consulter votre boite mail pour activer votre compte !');
                 $intraController->emailValidate($this->getUser(),$jwtService,$messageBus,IntraController::CHECk_USER,$intraController::SUBJECT,IntraController::REGISTER);
+                $this->addFlash('warning','Veuillez consulter votre boite mail pour activer votre compte !');
             }
         }
-        return $this->render('main/index.html.twig', [
-            'controller_name' => 'MainController',
-        ]);
+        return $this->render('main/index.html.twig');
     }
 
 }

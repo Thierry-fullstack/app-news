@@ -76,3 +76,7 @@ html,body {
 #label-check-agreeTerms{
     font-size: 13px;
 }
+#photo_edit_user{
+    height: 100px;
+    width: 100px;
+}

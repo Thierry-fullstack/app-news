@@ -3,11 +3,14 @@
 namespace App\Controller\Profil;
 
 
+use App\Entity\User;
+use App\Form\EditIdentityType;
 use App\Form\IdentityType;
 use App\Form\VerifyNumberType;
 use App\Repository\IdentityRepository;
 use App\Repository\UserRepository;
-use App\Service\FormService;
+use App\Service\FormServiceEdit;
+use App\Service\FormServiceInscription;
 use App\Service\IntraController;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
@@ -29,7 +32,7 @@ final class IdentityController extends AbstractController
     /**
      * @param RequestStack $requestStack
      * @param IdentityRepository $identityRepository
-     * @param FormService $formService
+     * @param FormServiceInscription $formService
      * @param SessionInterface $session
      * @return Response
      * @throws ORMException
@@ -37,7 +40,7 @@ final class IdentityController extends AbstractController
      * @throws Exception
      */
     #[Route('identity/register', name: 'app_identity',methods: ['GET','POST'])]
-    public function index(RequestStack $requestStack,IdentityRepository $identityRepository,FormService $formService,
+    public function index(RequestStack     $requestStack, IdentityRepository $identityRepository, FormServiceInscription $formService,
                           SessionInterface $session ): Response
     {
         if(!$this->getUser()){
@@ -57,6 +60,47 @@ final class IdentityController extends AbstractController
             'form'=>$form->createView()
         ]);
     }
+
+    /**
+     * @param User $user
+     * @param IdentityRepository $identityRepository
+     * @param RequestStack $requestStack
+     * @param FormServiceEdit $formService
+     * @param SessionInterface $session
+     * @return Response
+     * @throws Exception
+     */
+    #[Route('identity/edit_user/{id}',name: 'app_identity_edit_user',methods: ['GET','POST'])]
+    public function editUser(User             $user, IdentityRepository $identityRepository, RequestStack $requestStack, FormServiceEdit $formService,
+                             SessionInterface $session):Response
+    {
+        if(!$user->getId()){
+            return $this->redirectToRoute('app_main');
+        }
+        $identity = $identityRepository->find($user->getId());
+        $request = $requestStack->getMainRequest();
+        $form = $this->createForm(EditIdentityType::class,$identity);
+        $form->handleRequest($request);
+        if($request->isMethod('POST')){
+            if($form->isSubmitted()){
+                return $formService->handleFormData($form,$user,$session);
+            }
+        }
+        return $this->render('identity/edit.html.twig', [
+            'form'=>$form->createView()
+        ]);
+    }
+
+    /**
+     * @return Response
+     */
+    #[Route('identity/user',name: 'app_identity_user')]
+    public function showProfilUser():Response
+    {
+        return $this->render('identity/profil_user.html.twig');
+    }
+
+
 
     /**
      * @param UserRepository $userRepository

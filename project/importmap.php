@@ -28,6 +28,10 @@ return [
         'path'=>'./assets/js/ajax-identity.js',
         'entrypoint'=>true,
     ],
+    'edit_user'=>[
+        'path'=>'./assets/js/ajax-edit.js',
+        'entrypoint'=>true,
+    ],
     'request'=>[
         'path'=>'./assets/js/request.js',
         'entrypoint'=>true,

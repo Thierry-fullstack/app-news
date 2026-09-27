@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ app.user.identity.pseudo }}{% endblock %}
+
+
+    {% block body %}
+        <div class="container">
+            <div class="row-cols-10">
+                <a href="{{ path('profile_app_identity_edit_user',{'id':app.user.id}) }}" class="btn btn-outline-warning" tabindex="-1" role="button" aria-disabled="true">Modifier</a>
+
+            </div>
+        <br />
+        {{ app.user.identity.pseudo }}
+        <br />
+        {{ app.user.identity.portrait.name}}
+        </div>
+    {% endblock %}
+

@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Messenger\Exception\ExceptionInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -20,10 +21,12 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class RegistrationController extends AbstractController
 {
 
+    /**
+     * @throws ExceptionInterface
+     */
     #[Route('/register', name: 'app_register',methods: ['GET','POST'])]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager,
-    ValidatorInterface $validator,Security $security
-    ): Response
+    ValidatorInterface $validator,Security $security): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -75,7 +78,7 @@ class RegistrationController extends AbstractController
                 $user = $userRepository->find($payload['user_id']);
                 $user->setStatus(User::CONFIRM);
                 $entityManager->flush();
-                return $this->redirectToRoute('app_main');
+                return $this->redirectToRoute('app_login');
             }catch(EntityNotFoundException $e){
                 return $this->render('bundles/TwigBundle/Exception/error.html.twig',['exception'=> $e->getMessage()]);
             }

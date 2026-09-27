@@ -1,18 +1,19 @@
+
 /**
  * @typedef {Object} FormResponse
  * @property {string} code
  * @property {Object} errors
  * @property {string} html
  */
-let form_civility = document.body.querySelector('#add_identity_form');
+let form_civility = document.body.querySelector('#edit_identity_form');
+
 if(form_civility) {
     const record_done = document.querySelector('#record_done');
-    const identity_region = form_civility.querySelector('#identity_region');
-    const identity_pseudo = form_civility.querySelector('#identity_pseudo');
-    const identity_portrait = form_civility.querySelector('#identity_portrait');
-    const identity_skill = form_civility.querySelector('#identity_skill');
-    const identity_submit = form_civility.querySelector('#identity_submit');
-
+    const identity_region = form_civility.querySelector('#edit_identity_region');
+    const identity_pseudo = form_civility.querySelector('#edit_identity_pseudo');
+    const identity_portrait = form_civility.querySelector('#edit_identity_portrait');
+    const identity_skill = form_civility.querySelector('#edit_identity_skill');
+    const identity_submit = form_civility.querySelector('#edit_identity_submit');
 
     identity_region.addEventListener('input', function () {
         if (this.classList.contains('is-invalid')) {
@@ -50,6 +51,7 @@ if(form_civility) {
         switch (response.code) {
             case 'FORM_ADD_SUCCESSFULLY':
                 recordDone(identity_submit)
+                record_done.innerHTML += response.html
                 break;
             case 'FORM_BAD_RESPONSE':
                 handleErrors(response.errors);
@@ -62,9 +64,8 @@ if(form_civility) {
  * @param field
  */
 const recordDone = function(field){
-    window.location.href = "/";
     field.setAttribute('disabled','disabled');
-    form_civility.reset();
+    form_civility.reload()
 }
 /**
  *

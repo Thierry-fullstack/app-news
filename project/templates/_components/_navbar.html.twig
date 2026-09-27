@@ -5,38 +5,38 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 {% if app.user %}
-                {% if app.user and is_granted('ROLE_ADMIN') %}
+                {% if is_granted('ROLE_ADMIN') and (app.user.status === app.user.COMPLET) %}
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-small">
                     <li class="nav-item"><a class="nav-link text-primary-emphasis" href="{{ path('app_main') }}">Accueil</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-primary-emphasis" href="#" id="dropdown09" data-bs-toggle="dropdown" aria-expanded="false">{{ app.user.email }}</a>
                         <ul class="dropdown-menu text-small" aria-labelledby="dropdown09">
-                            <li class="nav-item"><a class="nav-link text-primary-emphasis" href="#"><i class="fa-solid fa-industry"></i> Gestion</a></li>
+                            <li class="nav-item"><a class="nav-link text-primary-emphasis" href="#"><i class="fa-solid fa-industry"></i> Gestion A</a></li>
                             <li class="nav-item"><a class="nav-link text-primary-emphasis" href="#"><i class="fa-regular fa-circle-user"></i> Votre profile</a></li>
-                            <li class="nav-item"><a class="nav-link text-primary-emphasis" href="{{ path('app_logout') }}"><i class="fa-solid fa-door-open"></i> Sortie</a></li>
+                            <li class="nav-item"><a class="nav-link text-primary-emphasis" href="{{ path('app_logout') }}"><i class="fa-solid fa-door-open"></i> Déconnexion</a></li>
                         </ul>
                     </li>
                 </ul>
-                {% elseif app.user and is_granted('ROLE_AUTHOR') %}
+                {% elseif is_granted('ROLE_AUTHOR') and (app.user.status === app.user.COMPLET) %}
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small">
                         <li class="nav-item"><a class="nav-link text-primary-emphasis" href="{{ path('app_main') }}">Accueil</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-primary-emphasis" href="#" id="dropdown09" data-bs-toggle="dropdown" aria-expanded="false">{{ app.user.email }}</a>
                             <ul class="dropdown-menu small" aria-labelledby="dropdown09">
-                                <li class="nav-item"><a class="nav-link text-primary-emphasis" href="#"><i class="fa-solid fa-industry"></i> Gestion</a></li>
+                                <li class="nav-item"><a class="nav-link text-primary-emphasis" href="#"><i class="fa-solid fa-industry"></i> Gestion B</a></li>
                                 <li class="nav-item"><a class="nav-link text-primary-emphasis" href="#"><i class="fa-regular fa-circle-user"></i> Profile</a></li>
-                                <li class="nav-item"><a class="nav-link text-primary-emphasis" href="{{ path('app_logout') }}"><i class="fa-solid fa-door-open"></i> Sortie</a></li>
+                                <li class="nav-item"><a class="nav-link text-primary-emphasis" href="{{ path('app_logout') }}"><i class="fa-solid fa-door-open"></i> Déconnexion</a></li>
                             </ul>
                         </li>
                     </ul>
-                {% elseif app.user and is_granted('ROLE_USER') %}
+                {% elseif is_granted('ROLE_USER') and (app.user.status === app.user.COMPLET) %}
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small">
                         <li class="nav-item"><a class="nav-link text-primary-emphasis" href="{{ path('app_main') }}">Accueil</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-primary-emphasis" href="#" id="dropdown09" data-bs-toggle="dropdown" aria-expanded="false">{{ app.user.email }}</a>
                             <ul class="dropdown-menu" aria-labelledby="dropdown09">
                                 <li class="nav-item"><a class="nav-link text-primary-emphasis" href="#"><i class="fa-regular fa-circle-user"></i>Profile</a></li>
-                                <li class="nav-item"><a class="nav-link text-primary-emphasis" href="{{ path('app_logout') }}"><i class="fa-solid fa-door-open"></i> Sortie</a></li>
+                                <li class="nav-item"><a class="nav-link text-primary-emphasis" href="{{ path('app_logout') }}"><i class="fa-solid fa-door-open"></i> Déconnexion</a></li>
                             </ul>
                         </li>
                     </ul>

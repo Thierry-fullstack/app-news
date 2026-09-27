@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}modification {{ app.user.identity.pseudo }}{% endblock %}
+{% block importmap %}
+    {{ importmap(['app', 'edit_user']) }}
+{% endblock %}
+
+    {% block body %}
+        <div id="record_done">
+            {% include '/_components/_Indentity_done.html.twig' %}
+        </div>
+        <div class="container-sm py-5 my-5">
+            <div class="row justify-content-center border-warning border-1">
+                <div class="col-lg-10 border-warning border-1 ">
+
+                    <div class=" rounded-1 border-warning border-1 ">
+
+                        <div class="bg-white text-center ">
+                            <h1 class="text-center mt-2 fst-italic fw-semibold text-capitalize text-warning ">
+                                Modification <small class="fs-5 text-muted fw-light">du profil</small></h1>
+                        </div>
+                        <div class="row g-0 ">
+                            <div class="col-md-4">
+                                <div class="d-grid">
+                                    <h6 class="mt-1 text-primary-emphasis"> Besoin d'aide ? </h6>
+                                    <img id="photo_edit_user" src="{{ asset('/assets/uploads/Portraits/mini/400x400-') ~ app.user.identity.portrait.name }}"
+                                         class="img-thumbnail rounded float-start" alt="{{ app.user.identity.pseudo }}" />
+
+                                    <p class="my-0 text-sm-center text-warning" id="dialogRegister">&nbsp;</p>
+                                    <ul class="list-group fw-light text-primary-emphasis">
+                                        <li class="contact-item list-group-item ">
+                                            <p id="email-info">Etat civil</p>
+                                        </li>
+                                        <li class="contact-item list-group-item">
+                                            <p id="pseudo-info">Région</p>
+                                        </li>
+                                        <li class="contact-item list-group-item">
+                                            <p id="portrait-info">Pseudonyme</p>
+                                        </li>
+                                        <li class="contact-item list-group-item">
+                                            <p id="password-info">Photo</p>
+                                        </li>
+                                        <li class="contact-item list-group-item">
+                                            <p id="agree-info">Compétence</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-8" >
+                                <div class="contact-form">
+                                    <hr class="text-primary mx-1" />
+                                    {{ form_start(form,{attr:{id:'edit_identity_form',novalidate:'novalidate'}}) }}
+                                    <div class="row my-5">
+                                        <div class="col-md-4 mt-2">
+                                            <div class="form-check">
+                                                {{ form_label(form.civility)}}
+                                                {{ form_widget(form.civility) }}
+                                                <div class="fs-6">
+                                                    {{ form_errors(form.civility)}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-8">
+                                            <div class="form-select-sm">
+                                                <label for="identity_region">Région</label>
+                                                {{ form_widget(form.region) }}
+                                                <div class="fs-6">
+                                                    {{ form_errors(form.region)}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="form-floating mb-3 mx-1">
+                                        {{ form_widget(form.pseudo) }}
+                                        {{ form_label(form.pseudo)}}
+                                        <div class="fs-6">
+                                            {{ form_errors(form.pseudo)}}
+                                        </div>
+                                    </div>
+                                    <div class="form-floating mb-3 mx-1">
+                                        {{ form_widget(form.portrait) }}
+                                        {{ form_label(form.portrait)}}
+                                        <div class="fs-6">
+                                            {{ form_errors(form.portrait)}}
+                                        </div>
+                                    </div>
+                                    <div class="form-floating mb-3 mx-1">
+                                        {{ form_widget(form.skill) }}
+                                        {{ form_label(form.skill)}}
+                                        <div class="fs-6">
+                                            {{ form_errors(form.skill)}}
+                                        </div>
+                                    </div>
+                                    <div class="d-grid mx-1 mt-2">
+                                        {{ form_row(form.submit,{ attr:{ class:'btn btn-outline-warning text-primary-emphasis text-capitalize col-12 mx-auto' } }) }}
+                                    </div>
+                                    {{ form_end(form) }}
+                                    <div class="text-center my-4">
+                                        <a href="{{ path('app_login') }}" class="text-primary-emphasis fw-semibold fst-italic text-decoration-none"
+                                           data-bs-toggle="tooltip" data-bs-placement="top" title="Déjà inscrit ?">Déjà inscrit ?</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
