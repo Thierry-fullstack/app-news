@@ -43,10 +43,10 @@ if(form_civility) {
             })
     });
 
-    /**
-     * @param {FormResponse} response
-     */
-    const handleResponse = function (response) {
+/**
+* @param {FormResponse} response
+*/
+const handleResponse = function (response) {
         removeErrors();
         switch (response.code) {
             case 'FORM_ADD_SUCCESSFULLY':
@@ -65,7 +65,8 @@ if(form_civility) {
  */
 const recordDone = function(field){
     field.setAttribute('disabled','disabled');
-    form_civility.reload()
+    form_civility.reset();
+    window.location.href = "/";
 }
 /**
  *
@@ -76,18 +77,18 @@ const removeErrorOne = function(field){
         field.nextSibling.remove();
 }
 
-
-    const removeErrors = function(){
+const removeErrors = function(){
         const invalidFeedbackElements = document.querySelectorAll('.invalid-feedback');
         const isInvalidElements = document.querySelectorAll('.is-invalid');
         invalidFeedbackElements.forEach(errorElement => errorElement.remove());
         isInvalidElements.forEach(isInvalidElements => isInvalidElements.classList.remove('is-invalid'));
     }
-    /**
-    *
-    * @param {Object} errors
-    */
-    const handleErrors = function(errors){
+
+/**
+*
+* @param {Object} errors
+*/
+const handleErrors = function(errors){
         if(errors.length === 0) return;
         for(const key in errors) {
             let element = document.querySelector(`#identity_${key}`);
@@ -97,8 +98,6 @@ const removeErrorOne = function(field){
         div.innerText = errors[key];
         element.after(div);
     }
-
-
 }
 
 

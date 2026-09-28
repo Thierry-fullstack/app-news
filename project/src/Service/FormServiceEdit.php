@@ -63,7 +63,7 @@ class FormServiceEdit
         $this->em->flush();
         return new JsonResponse([
             'code'=>Identity::FORM_ADD_SUCCESSFULLY,
-            'html'=>$this->twig->render('_components/_Indentity_done.html.twig',['identity'=>$identity->getPseudo() ])
+            //'html'=>$this->twig->render('_components/_Indentity_done.html.twig',['identity'=>$identity->getPseudo() ])
         ]);
     }
 
