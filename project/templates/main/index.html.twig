@@ -3,8 +3,9 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
+    <div id="app_main">
     {% if app.user %}
 {{ app.user.status }}
     {% endif %}
-
+    </div>
 {% endblock %}

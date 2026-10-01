@@ -46,6 +46,9 @@ final class IdentityController extends AbstractController
         if(!$this->getUser()){
             return $this->redirectToRoute('app_login');
         }
+        if($this->getUser()->getStatus()==='COMPLET'){
+            return $this->redirectToRoute('app_main');
+        }
 
         $request =$requestStack->getMainRequest();
         $form = $this->createForm(IdentityType::class,$identityRepository->findByGender());

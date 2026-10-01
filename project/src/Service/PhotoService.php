@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class PhotoService
 {
+    public const string PHOTO_PATH = 'portraits';
     private ParameterBagInterface $params;
 
     public function __construct(ParameterBagInterface $params)

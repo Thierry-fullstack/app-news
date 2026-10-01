@@ -6,7 +6,6 @@
  */
 let form_civility = document.body.querySelector('#add_identity_form');
 if(form_civility) {
-    const record_done = document.querySelector('#record_done');
     const identity_region = form_civility.querySelector('#identity_region');
     const identity_pseudo = form_civility.querySelector('#identity_pseudo');
     const identity_portrait = form_civility.querySelector('#identity_portrait');

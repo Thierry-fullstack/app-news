@@ -43,18 +43,13 @@ class RegistrationFormType extends AbstractType
                 'label_attr'=>['class'=>'form-check-label'],
                 'constraints' => [
                     new Sequentially([
-                        new NotBlank(
-                            message: '',
-                        ),
+                        new NotBlank(),
                         new Length(
                             min: 10,
                             max: 10,
-                            minMessage: '',
-                            maxMessage: '',
                         ),
                         new Regex(
                             pattern: '/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{10}$/i',
-                            message: '',
                             htmlPattern: '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{10}$'
                         )
                     ])
@@ -65,9 +60,7 @@ class RegistrationFormType extends AbstractType
                 'label'=>'  Accepter contrat *',
                 'label_attr'=>['class'=>'p-0 fw-light','id'=>'label-check-agreeTerms'],
                 'constraints' => [
-                    new IsTrue(
-                        message: '',
-                    ),
+                    new IsTrue(),
                 ],
             ])
             ->add('register',SubmitType::class,[

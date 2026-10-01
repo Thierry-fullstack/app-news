@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Entity\User;
 use App\Message\SendActivationMessage;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Messenger\Exception\ExceptionInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -68,6 +69,20 @@ class IntraController extends AbstractController
     public function emailSimple(User $user, MessageBusInterface $messageBus, array $context):void
     {
         $messageBus->dispatch(new SendActivationMessage(self::WEBMASTER,$user->getEmail(),self::CHECK_YOUR_IDENTITY,self::VERIFICATION,$context));
+    }
+
+    public function getErrorMessages(FormInterface $form):array
+    {
+        $errors = [];
+        foreach ($form->getErrors() as $error){
+            $errors[] = $error->getMessage();
+        }
+        foreach ($form->all() as $child){
+            if(!$child->isValid()){
+                $errors[$child->getName()] = $this->getErrorMessages($child);
+            }
+        }
+        return $errors;
     }
 
 }

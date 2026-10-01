@@ -20,12 +20,12 @@
                         <hr class="text-primary" />
                         <div class="d-grid gap-2 mb-3">
                             <ul class="list-group">
-                                <li id="dialogLogin" class="list-group-item text-warning fw-bolder"></li>
+                                <li id="dialogLogin" class="list-group-item text-primary-emphasis fw-bolder"></li>
                             </ul>
                         </div>
                         <form method="post" id="loginForm" novalidate>
                             <div class="form-floating mb-3">
-                                <input type="email" value="{{ last_username }}" class="form-control form-control-sm  text-primary-emphasis " name="email" id="inputEmail" required
+                                <input type="email" autofocus class="form-control form-control-sm  text-primary-emphasis " name="email" id="inputEmail" required
                                        autocomplete="email" >
                                 <label for="inputEmail" class="form-check-label text-info-emphasis" id="labelEmail">Email *</label>
                             </div>

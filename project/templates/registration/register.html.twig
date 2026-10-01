@@ -7,15 +7,19 @@
 {% endblock %}
 
 {% block body %}
+    <div id="inscrit_done">
+        {% include '/_components/_Indentity_done.html.twig' %}
+    </div>
     <div class="container-sm py-5">
         <div class="row justify-content-center">
             <div class="col-lg-10">
+
                 <div class="contact-wrapper">
                     <div class="row">
                         <div class="col-md-4">
                             <div class="mt-5 contact-info h-100" >
                                 <h6 class="mx-2 mb-3 text-center text-primary-emphasis">Besoin d'aide ? </h6>
-                                <p class="my-1 mt-2 small text-center text-warning fw-bolder small" id="dialogRegister">&nbsp;</p>
+                                <p class="my-1 mt-2 small text-center text-primary-emphasis fw-bolder small" id="dialogRegister">&nbsp;</p>
                                 <ul class="mx-1 mt-4 list-group text-warning-emphasis h-50" id="list-group-register">
                                     <li class="contact-item list-group-item">
                                         <p class="mb-0" id="email-info">Email</p>
@@ -46,9 +50,9 @@
                                     <hr class="text-primary" />
                                 </div>
 
-                                {{ form_start(registrationForm,{attr:{id:'registration_form',class:'mt-5'}}) }}
+                                {{ form_start(registrationForm,{attr:{id:'registration_form',class:'mt-5',novalidate:'novalidate'}}) }}
                                 <div class="form-floating mb-3">
-                                    {{ form_widget(registrationForm.email) }}
+                                    {{ form_widget(registrationForm.email,{attr:{autofocus:'autofocus'}}) }}
                                     {{ form_label(registrationForm.email)}}
                                     <div class="text-danger small">
                                         {{ form_errors(registrationForm.email)}}
