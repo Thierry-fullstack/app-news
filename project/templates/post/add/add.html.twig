@@ -1,0 +1,32 @@
+
+<div class="row justify-content-start col-sm-10">
+<h1 class="mb-3 text-sm-center bg-white fst-italic text-capitalize text-warning">Article - ajout</h1>
+    <fieldset>
+            <legend class="color-wine fs-1 my-0 text-center"></legend>
+            <hr class="text-primary mb-3" />
+            {{ form_start(form,{attr:{id:'add_article_form',novalidate:'novalidate'}}) }}
+            <div class="form-floating mb-3 ">
+                <p class="text-danger-emphasis">Titre</p>
+                {{ form_widget(form.title) }}
+                <div class="text-danger small">
+                    {{ form_errors(form.title)}}
+                </div>
+            </div>
+            <div class="form-floating mb-3" id="add_article_content">
+                <p class="text-danger-emphasis">Texte de l'article</p>
+                {{ form_widget(form.content) }}
+                {{ form_label(form.content)}}
+                <div class="text-danger small">
+                    {{ form_errors(form.content)}}
+                </div>
+            </div>
+
+            <div class="form-floating my-3 " id="add_article_submit">
+                {{ form_row(form.submit) }}
+            </div>
+            {{ form_end(form) }}
+          </fieldset>
+
+
+
+

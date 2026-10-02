@@ -80,3 +80,108 @@ html,body {
     height: 100px;
     width: 100px;
 }
+
+/* hauteur ckeditor */
+.ck-editor__editable_inline {
+    min-height: 300px;
+}
+/*--------------*/
+
+/********************************************/
+
+/* button bordeaux btn-wine */
+.btn-wine {
+    color: #ffffff;
+    background-color: #9C1448;
+    border-color: #4D0322;
+}
+
+.btn-wine:hover,
+.btn-wine:focus,
+.btn-wine:active,
+.btn-wine.active,
+.open .dropdown-toggle.btn-wine {
+    color: #ffffff;
+    background-color: #730F3E;
+    border-color: #4D0322;
+}
+
+.btn-wine:active,
+.btn-wine.active,
+.open .dropdown-toggle.btn-wine {
+    background-image: none;
+}
+
+.btn-wine.disabled,
+.btn-wine[disabled],
+fieldset[disabled] .btn-wine,
+.btn-wine.disabled:hover,
+.btn-wine[disabled]:hover,
+fieldset[disabled] .btn-wine:hover,
+.btn-wine.disabled:focus,
+.btn-wine[disabled]:focus,
+fieldset[disabled] .btn-wine:focus,
+.btn-wine.disabled:active,
+.btn-wine[disabled]:active,
+fieldset[disabled] .btn-wine:active,
+.btn-wine.disabled.active,
+.btn-wine[disabled].active,
+fieldset[disabled] .btn-wine.active {
+    background-color: #9C1448;
+    border-color: #4D0322;
+}
+
+.btn-wine .badge {
+    color: #9C1448;
+    background-color: #ffffff;
+}
+
+/* end button wine */
+
+/* button gray */
+.btn-gray {
+    color: #ffffff;
+    background-color: #9C999A;
+    border-color: #0A090A;
+}
+
+.btn-gray:hover,
+.btn-gray:focus,
+.btn-gray:active,
+.btn-gray.active,
+.open .dropdown-toggle.btn-gray {
+    color: #ffffff;
+    background-color: #6B6568;
+    border-color: #0A090A;
+}
+
+.btn-gray:active,
+.btn-gray.active,
+.open .dropdown-toggle.btn-gray {
+    background-image: none;
+}
+
+.btn-gray.disabled,
+.btn-gray[disabled],
+fieldset[disabled] .btn-gray,
+.btn-gray.disabled:hover,
+.btn-gray[disabled]:hover,
+fieldset[disabled] .btn-gray:hover,
+.btn-gray.disabled:focus,
+.btn-gray[disabled]:focus,
+fieldset[disabled] .btn-gray:focus,
+.btn-gray.disabled:active,
+.btn-gray[disabled]:active,
+fieldset[disabled] .btn-gray:active,
+.btn-gray.disabled.active,
+.btn-gray[disabled].active,
+fieldset[disabled] .btn-gray.active {
+    background-color: #9C999A;
+    border-color: #0A090A;
+}
+
+.btn-gray .badge {
+    color: #9C999A;
+    background-color: #ffffff;
+}
+/* end button gray */

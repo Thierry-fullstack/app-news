@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{% block title %}Creation article{% endblock %}
+
+{% block importmap %}
+    {{ importmap(['app','ckeditor-init','add-article']) }}
+{% endblock %}
+{% block body %}
+    <main role="main">
+        <div id="control_post">
+            {% if post is defined %}
+                {% include '/_components/_post_done.html.twig' %}
+            {% endif %}
+        </div>
+        <div class="container-fluid">
+            <div class="row justify-content-around">
+            {% include '/_components/_flash.html.twig' %}
+            <div class="col-md-10 offset-md-1">
+            {% block center %}
+                <!-- Main Content -->
+                <div class="main-content">
+              {% include 'post/add/add.html.twig' %}
+                </div>
+                <!-- Toggle Button -->
+           {# include '_components/btn_sidebar.html.twig' #}
+
+            {% endblock center %}
+            </div>
+            <div class="col-4">
+            {% block side %}
+                <!-- Sidebar -->
+                {# include '_components/_side.html.twig' #}
+                <!--end Sidebar -->
+            {% endblock side %}
+            </div>
+        </div>
+        </div>
+    </main>
+
+    <script>
+        function toggleSidebar  () {
+            const sidebar = document.getElementById('sidebar');
+            const toggleBtn = document.querySelector('.toggle-btn');
+            sidebar.classList.toggle('collapsed');
+            toggleBtn.classList.toggle('collapsed');
+        }
+    </script>
+{% endblock body %}

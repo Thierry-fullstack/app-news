@@ -40,6 +40,14 @@ return [
         'path' => './assets/js/reset.js',
         'entrypoint' => true,
     ],
+    'ckeditor-init' => [
+        'path' => './assets/js/ckeditor-init.js',
+        'entrypoint' => true,
+    ],
+    'add-article' => [
+        'path' => './assets/js/ajax-add-post.js',
+        'entrypoint' => true,
+    ],
     '@hotwired/turbo' => [
         'version' => '8.0.23',
     ],
